@@ -107,6 +107,6 @@ export class TasksComponent implements OnInit {
   }
 
   getUserName(userId: string): string {
-    return this.users.find(u => u.id === userId)?.name || '';
+    return this.users.find(u => u.id === userId)?.name || 'Unknown User';
   }
 }
