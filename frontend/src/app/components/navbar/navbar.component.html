@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span class="app-title">TaskManager</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <button mat-button routerLink="/dashboard" routerLinkActive="active-link">Dashboard</button>
+    <button mat-button routerLink="/projects" routerLinkActive="active-link">Projects</button>
+    <button mat-button routerLink="/tasks" routerLinkActive="active-link">Tasks</button>
+    <button mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </ng-container>
+  <ng-container *ngIf="!authService.isLoggedIn()">
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/register">Register</button>
+  </ng-container>
+</mat-toolbar>

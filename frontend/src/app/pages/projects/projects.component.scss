@@ -1,0 +1,8 @@
+.page-container { padding: 24px; max-width: 1200px; margin: 0 auto; }
+.page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.form-card { margin-bottom: 24px; }
+.full-width { width: 100%; margin-bottom: 16px; display: block; }
+.form-actions { display: flex; gap: 8px; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.project-card { height: 100%; }
+.empty-state { text-align: center; color: #666; padding: 48px; }

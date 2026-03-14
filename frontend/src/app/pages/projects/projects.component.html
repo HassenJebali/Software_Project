@@ -1,0 +1,62 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Projects</h1>
+    <button mat-raised-button color="primary" (click)="openCreate()">
+      <mat-icon>add</mat-icon> New Project
+    </button>
+  </div>
+
+  <mat-card *ngIf="showForm" class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{ editingProject ? 'Edit Project' : 'New Project' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title">
+          <mat-error>Title is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="3"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="ACTIVE">Active</mat-option>
+            <mat-option value="ON_HOLD">On Hold</mat-option>
+            <mat-option value="COMPLETED">Completed</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit">Save</button>
+          <button mat-button type="button" (click)="cancelForm()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="projects-grid">
+    <mat-card *ngFor="let project of projects" class="project-card">
+      <mat-card-header>
+        <mat-card-title>{{ project.title }}</mat-card-title>
+        <mat-card-subtitle>
+          <mat-chip [color]="project.status === 'ACTIVE' ? 'primary' : 'accent'" selected>{{ project.status }}</mat-chip>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ project.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" routerLink="/tasks" [queryParams]="{ projectId: project.id }">
+          <mat-icon>assignment</mat-icon> Tasks
+        </button>
+        <button mat-button (click)="openEdit(project)"><mat-icon>edit</mat-icon> Edit</button>
+        <button mat-button color="warn" (click)="deleteProject(project.id)"><mat-icon>delete</mat-icon> Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <p *ngIf="projects.length === 0" class="empty-state">No projects yet. Create your first project!</p>
+</div>

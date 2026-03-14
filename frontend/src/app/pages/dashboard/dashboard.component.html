@@ -1,0 +1,39 @@
+<div class="dashboard-container">
+  <h1>Welcome back, {{ userName }}!</h1>
+  <div class="stats-grid">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-number">{{ projects.length }}</div>
+        <div class="stat-label">Total Projects</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card todo">
+      <mat-card-content>
+        <div class="stat-number">{{ todoCount }}</div>
+        <div class="stat-label">Tasks To Do</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card in-progress">
+      <mat-card-content>
+        <div class="stat-number">{{ inProgressCount }}</div>
+        <div class="stat-label">In Progress</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card done">
+      <mat-card-content>
+        <div class="stat-number">{{ doneCount }}</div>
+        <div class="stat-label">Done</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="recent-section">
+    <h2>Recent Projects</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let project of projects | slice:0:5">
+        <span matListItemTitle>{{ project.title }}</span>
+        <span matListItemLine>{{ project.status }}</span>
+      </mat-list-item>
+    </mat-list>
+    <a mat-button color="primary" routerLink="/projects">View all projects</a>
+  </div>
+</div>
